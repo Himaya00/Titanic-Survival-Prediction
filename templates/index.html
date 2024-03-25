@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .input-field {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Titanic Survival Prediction</h1>
+        <form action="/Titanic" method="POST">
+            <div class="form-group">
+                <label for="Pclass">Enter Passenger Class</label>
+                <input type="number" name="Pclass" id="Pclass" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label>Enter your Gender</label>
+                <div class="form-check">
+                    <input type="radio" id="male" value="1" name="Sex" class="form-check-input" required>
+                    <label for="male" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" id="female" value="0" name="Sex" class="form-check-input">
+                    <label for="female" class="form-check-label">Female</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Age">Age in years</label>
+                <input type="number" placeholder="Enter the age of the person" id="Age" name="Age"
+                    class="form-control" min="0" max="100" required>
+            </div>
+            <div class="form-group">
+                <label for="Fare">Enter the fare charged</label>
+                <input type="number" placeholder="Enter the Passenger fare" id="Fare" name="Fare"
+                    class="form-control" min="0" max="10000" required>
+            </div>
+            <div class="form-group">
+                <label for="Embarked">Port of Embarkation</label>
+                <select name="Embarked" id="Embarked" class="form-control" required>
+                    <option value="">Select any value</option>
+                    <option value="2">Cherbourg</option>
+                    <option value="0">Queenstown</option>
+                    <option value="1">Southampton</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Predict</button>
+        </form>
+        
+        <!-- Display Survived/Not Survived message in a box -->
+        {% if error %}
+        <p class="alert alert-danger">{{ error }}</p>
+        {% endif %}
+
+        {% if Survived == 0 %}
+        <div class="alert alert-danger">Not Survived</div>
+        {% endif %}
+
+        {% if Survived == 1 %}
+        <div class="alert alert-success">Survived</div>
+        {% endif %}
+        
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
